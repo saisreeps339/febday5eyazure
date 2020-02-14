@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashudepday5
+  name: ashudepday5
+  namespace: ashutoshh
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ashudepday5
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ashudepday5
+    spec:
+      containers:
+      - image: dockerashu/eyappday5:v1
+        name: eyappday5
+        imagePullPolicy: Always
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashudepsvc1
+  name: ashudepsvc1
+  namespace: ashutoshh
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: ashudepday5
+  type: NodePort
+status:
+  loadBalancer: {}
